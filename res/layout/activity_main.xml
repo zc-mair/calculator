@@ -1,0 +1,137 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:layout_centerHorizontal="true"
+	android:orientation="horizontal"
+	android:layout_gravity="center"
+    tools:context=".MainActivity" >
+	<TableRow>
+
+		<TextView
+		    android:id="@+id/screen"
+		    android:layout_height="60dp"
+		    android:layout_span="4" 
+		    android:layout_weight="1"
+		    android:layout_margin="4dp"
+		    android:background="#000000" />
+
+    </TableRow>
+	<TableRow>
+
+		<Button
+		    android:id="@+id/leftParenthesis"
+		    android:text="@string/leftParenthesis" 
+		    android:layout_weight="1" />
+
+	    <Button
+	        android:id="@+id/rightParenthesis"
+	        android:text="@string/rightParenthesis" 
+	        android:layout_weight="1" />
+
+	  	<Button
+	        android:id="@+id/mod"
+	        android:text="@string/mod"
+	        android:layout_weight="1" />
+	    	    
+	    <Button
+	        android:id="@+id/divide"
+	        android:text="@string/divide" 
+	        android:layout_weight="1" />
+
+	</TableRow>
+	<TableRow>
+	    <Button
+	        android:id="@+id/seven"
+	        android:text="@string/seven"
+	        android:layout_weight="1" />
+
+	    <Button
+	        android:id="@+id/eight"
+	        android:text="@string/eight"
+	        android:layout_weight="1" />
+
+	    <Button
+	        android:id="@+id/nine"
+	        android:text="@string/nine"
+	        android:layout_weight="1" />
+
+	    <Button
+	        android:id="@+id/multiply"
+	        android:text="@string/multiply"
+	        android:layout_weight="1" />
+	</TableRow>
+
+    <TableRow>
+    	<Button
+        	android:id="@+id/four"
+        	android:text="@string/four"
+	        android:layout_weight="1" />    
+	        
+        <Button
+        	android:id="@+id/five"
+        	android:text="@string/five"
+	        android:layout_weight="1" />
+        
+        <Button
+        	android:id="@+id/six"
+        	android:text="@string/six"
+	        android:layout_weight="1" />
+        
+        <Button
+        	android:id="@+id/plus"
+        	android:text="@string/plus"
+	        android:layout_weight="1" />    
+    </TableRow>    
+    <TableRow>
+    	<Button
+        	android:id="@+id/one"
+        	android:text="@string/one"
+	        android:layout_weight="1" />    
+        
+        <Button
+        	android:id="@+id/two"
+        	android:text="@string/two"
+	        android:layout_weight="1" />
+        
+        <Button
+        	android:id="@+id/three"
+        	android:text="@string/three"
+	        android:layout_weight="1" />
+        
+        <Button
+        	android:id="@+id/minus"
+        	android:text="@string/minus"
+	        android:layout_weight="1" />    
+    </TableRow> 
+    <TableRow>
+    	<Button
+        	android:id="@+id/zero"
+        	android:text="@string/zero"
+	        android:layout_weight="1" />    
+        
+        <Button
+        	android:id="@+id/dot"
+        	android:text="@string/dot"
+	        android:layout_weight="1" />
+        
+        <Button
+        	android:id="@+id/delete"
+        	android:text="@string/delete"
+	        android:layout_weight="1" />   
+        
+        <Button
+        	android:id="@+id/clear"
+        	android:text="@string/clear"
+	        android:layout_weight="1" />  
+    </TableRow>    
+
+    <TableRow android:gravity="right" >
+
+        <Button
+        	android:id="@+id/run"
+        	android:text="@string/run"
+        	android:layout_span="2"
+        	android:layout_height="60dp" />  
+    </TableRow>  
+</TableLayout>
