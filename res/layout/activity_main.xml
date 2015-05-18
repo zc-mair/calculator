@@ -121,17 +121,27 @@
 	        android:layout_weight="1" />   
         
         <Button
-        	android:id="@+id/clear"
-        	android:text="@string/clear"
+        	android:id="@+id/power"
+        	android:text="@string/power"
 	        android:layout_weight="1" />  
     </TableRow>    
-
-    <TableRow android:gravity="right" >
-
+    <TableRow android:gravity="center" >
+ 		<Button
+        	android:id="@+id/previous"
+        	android:text="@string/previous"
+        	android:layout_height="60dp"
+        	android:layout_weight="1" />	
+        
+        <Button
+            android:id="@+id/clear"
+        	android:text="@string/clear"
+        	android:layout_height="60dp" 
+            android:layout_weight="1" />
+        
         <Button
         	android:id="@+id/run"
         	android:text="@string/run"
-        	android:layout_span="2"
-        	android:layout_height="60dp" />  
+        	android:layout_height="60dp"
+        	android:layout_weight="1" />
     </TableRow>  
 </TableLayout>

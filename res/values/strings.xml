@@ -19,11 +19,13 @@
     <string name="multiply">*</string>
     <string name="divide">/</string>
     <string name="mod">%</string>
+    <string name="power">^</string>
     <string name="leftParenthesis">(</string>
     <string name="rightParenthesis">)</string>
     <string name="delete">del</string>
 	<string name="clear">clr</string>
     <string name="run">eval</string>
+    <string name="previous">pre</string>
     
 
 </resources>
