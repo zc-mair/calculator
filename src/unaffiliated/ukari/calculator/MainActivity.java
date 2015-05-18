@@ -269,8 +269,10 @@ public class MainActivity extends Activity {
 				return null;
 			}
 			quoteRemove = calculate(quoteRemove);
+			if (quoteRemove.charAt(0) == '-'){
+				quoteRemove = "0" + quoteRemove;
+			}
 			expression = expression.substring(0,leftQuote)+quoteRemove+expression.substring(rightQuote+1);
-			
 			expression = quoteProcess(expression);
 			if(expression == null){
 				result = null;
