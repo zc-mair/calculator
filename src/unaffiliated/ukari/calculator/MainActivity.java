@@ -1,11 +1,5 @@
 package unaffiliated.ukari.calculator;
 
-import java.math.BigDecimal;
-import java.util.Scanner;
-import java.util.Stack;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -14,7 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.TextView;;
 
 public class MainActivity extends Activity {
 	//String
@@ -73,7 +67,7 @@ public class MainActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {  
         switch (item.getItemId()) {  
         case Menu.FIRST:  
-        	new AlertDialog.Builder(MainActivity.this).setTitle("Information").setMessage("Sourcecode:\nhttps://github.com/ukari/calculator\nEmail:\nchendianbuji@gmail.com\nDate:\n2015-05-18 22:44").show(); 
+        	new AlertDialog.Builder(MainActivity.this).setTitle("Information").setMessage("Sourcecode:\nhttps://github.com/ukari/calculator\nEmail:\nchendianbuji@gmail.com\nDate:\n2015-05-20 7:12").show(); 
             break;  
         case Menu.FIRST + 1:  
         	android.os.Process.killProcess(android.os.Process.myPid());
@@ -271,195 +265,22 @@ public class MainActivity extends Activity {
 	
 	public void refreshResultModeScreen(){
 		textViewScreen.setTextAppearance(getApplicationContext(),android.R.style.TextAppearance_Large);
-		previousEquation = equation;
-		if(equation.length() == 0||equation.equals("")){
-			result = "input error";
-		}else{
-			result = quoteProcess(equation);
+		if (equation.equals(result)&&!equation.equals("")) {
+			return;
+		}else if (!(result.equals("input error")||result.equals("Uncalculateable"))||equation.length()>0) {
+			previousEquation = equation;
 		}
+		
+		result = Calculate.quoteProcess(equation);
 		if (result == null){
 			result = "input error";
+			equation = "";
+		}else if(result.equals("Uncalculateable")){
+			equation = "";
 		}else{
 			equation = result;
 		}
 		textViewScreen.setText(result);
-		if(result.equals("input error")){
-			equation = "";
-		}
-	}
-	
-	public String quoteProcess(String expression){
-		int rightQuote;
-		int leftQuote;
-		String result;
-		if (expression==null||expression.equals("")) {
-			result = "0";
-			return result;
-		}
-		Pattern quotePattern = Pattern.compile("\\d\\(|\\)\\d");
-		Matcher quoteMatcher = quotePattern.matcher(expression);
-		if(quoteMatcher.find()) {
-			result = null;
-			return result;
-		}
-		
-		rightQuote = expression.indexOf(')');
-		leftQuote = expression.lastIndexOf('(',rightQuote);
-		if(rightQuote >- 1&&leftQuote >- 1){
-			String quoteRemove = expression.substring(leftQuote+1, rightQuote);
-			if(quoteRemove == null||quoteRemove.length() == 0){
-				result = "0";
-				return result;
-			}
-			quoteRemove = calculate(quoteRemove);
-			expression = expression.substring(0,leftQuote)+quoteRemove+expression.substring(rightQuote+1);
-			expression = quoteProcess(expression);
-			if(expression == null){
-				result = null;
-				return result;
-			}
-			rightQuote = expression.indexOf(')');
-			leftQuote = expression.lastIndexOf('(',rightQuote);
-		}
-		
-		if(leftQuote == -1&&rightQuote == -1&&expression.indexOf('(') == -1&&expression.indexOf(')') == -1){
-			result = calculate(expression);
-		}else{
-			result = null;
-		}
-		return result;
-		
-	}
-	
-	public String calculate(String equation){
-		String equationResult = null;
-		if (equation==null) {
-			equationResult = "0";
-			return equationResult;
-		}
-		
-		if (equation.charAt(0) == '-'){
-			equation = "0+" + equation;
-		}
-		
-		
-		Scanner numberScanner = new Scanner(equation);
-		Stack<BigDecimal> number = new Stack<BigDecimal>();
-		numberScanner.useDelimiter("\\+|(?<=\\d)\\-|\\*|\\/|\\%|\\^");
-		Scanner operaterScanner = new Scanner(equation);
-		operaterScanner.useDelimiter("\\d+(\\.\\d+)?");
-		Stack<Character> operator = new Stack<Character>();
-		
-		while(numberScanner.hasNextDouble()||operaterScanner.hasNext()){
-			if (numberScanner.hasNextDouble()){
-				number.push(new BigDecimal(numberScanner.nextDouble()));
-			}
-			if (operaterScanner.hasNext()) {
-				char tmpOperatorArray[] = operaterScanner.next().toCharArray();
-				char tmpOperator = tmpOperatorArray[0];
-				if ((tmpOperatorArray.length == 2&&tmpOperatorArray[1] != '-')||tmpOperatorArray.length > 2) {
-					equationResult = null;
-					return equationResult;
-				}
-				if(isOperator(tmpOperator)){
-					char previousOperator = 0;
-					if(!operator.empty()){
-						previousOperator = operator.pop();
-						operator.push(previousOperator);
-					}
-					
-					if (number.size()>1&&(!operator.empty())&&operatorPriority(previousOperator) == 2) {
-						number.push(baseCalculate(number.pop(),operator.pop(),number.pop()));
-						if(!operator.empty()){
-							previousOperator = operator.pop();
-							operator.push(previousOperator);
-						}
-					}
-					
-					if (number.size()>1&&(!operator.empty())&&operatorPriority(previousOperator) == 3&&operatorPriority(tmpOperator) >= operatorPriority(previousOperator)) {
-						number.push(baseCalculate(number.pop(),operator.pop(),number.pop()));
-						if(!operator.empty()){
-							previousOperator = operator.pop();
-							operator.push(previousOperator);
-						}
-					}
-					
-					if ((!operator.empty())&&operatorPriority(previousOperator) == 4&&operatorPriority(tmpOperator) >= operatorPriority(previousOperator)) {
-						number.push(baseCalculate(number.pop(),operator.pop(),number.pop()));
-					}
-					operator.push(tmpOperator);
-				}
-			}	
-		}
-		numberScanner.close();
-		operaterScanner.close();
-		if(number.size()-operator.size() != 1){
-			equationResult = null;
-			return equationResult;
-		}
-		while (!operator.empty()) {
-			number.push(baseCalculate(number.pop(), operator.pop(), number.pop()));
-		}
-		
-		equationResult = number.pop().toString();
-		return equationResult;
-	}
-	
-	private boolean isOperator(int input){
-		switch(input){
-			case '+':
-			case '-':
-			case '*':
-			case '/':
-			case '%':
-			case '^':
-				return true;
-		}
-		return false;
-	}
-	
-	private int operatorPriority(char operator){
-		switch (operator) {
-			case '^':
-				return 2;
-			case '*':
-			case '/':
-			case '%':
-				return 3;
-			case '+':
-			case '-':
-				return 4;
-			default:
-				break;
-		}
-		return 0;
-	}
-	
-	private BigDecimal baseCalculate(BigDecimal numberB,char operator,BigDecimal numberA){
-		BigDecimal result = new BigDecimal(0);
-		switch (operator) {
-			case '+':
-				result = numberA.add(numberB);
-				break;
-			case '-':
-				result = numberA.subtract(numberB);
-				break;
-			case '*':
-				result = numberA.multiply(numberB);
-				break;
-			case '/':
-				result = numberA.divide(numberB,8,BigDecimal.ROUND_HALF_UP);
-				break;
-			case '%':
-				result = numberA.divideAndRemainder(numberB)[1];
-				break;
-			case '^':
-				result = new BigDecimal(Math.pow(numberA.doubleValue(), numberB.doubleValue()));
-				break;
-			default:
-				break;
-		}
-		return result;
 	}
 }
 
