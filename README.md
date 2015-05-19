@@ -26,7 +26,7 @@
 * del : backspace
 * eval : do calculate for the expression on screen
 
-## Setting list
+## Setting List
 
 * Information : such as sourcecode's url,creator's email and apk's compile date
 * Exit : quit
@@ -35,7 +35,7 @@
 
 * scientific notation support
 
-## Support / issues
+## Support / Issues
 
 If you hit any problems, please first ensure that you are using the latest version
 of this code, and that you have updated your packages to the most recent available
