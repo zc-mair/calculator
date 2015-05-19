@@ -3,29 +3,37 @@
 ## IDE:
 
 * eclipse
+
+## Run Environment
+
+* Android 4.*.*
     
 ## Operator List:
 
 * '(' - left quote
 * ')' - right quote
-* '+' - plus
-* '-' - minus
-* '*' - multiply
-* '/' - divide
-* '%' - mod
-* '^' -
+* +    plus
+* -    minus
+* *    multiply
+* /    divide
+* %    mod
+* ^    power
 
 ## Function List:
 
-* pre - watch the last expression
-* clr - clear the screen
-* del - backspace
-* eval - do calculate for the expression on screen
+* pre    watch the last expression
+* clr    clear the screen
+* del    backspace
+* eval   do calculate for the expression on screen
 
-## setting list
+## Setting list
 
 * Information - such as sourcecode's url,creator's email and apk's compile date
 * Exit - quit
+
+## Others
+
+* scientific notation support
 
 ## Support / issues
 
