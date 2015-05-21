@@ -58,7 +58,6 @@ public class MainActivity extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        //getMenuInflater().inflate(R.menu.activity_main, menu);
         menu.add(0, Menu.FIRST, 0, "Information");
         menu.add(0, Menu.FIRST+1, 1, "Exit");
     	return true;
@@ -67,7 +66,7 @@ public class MainActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {  
         switch (item.getItemId()) {  
         case Menu.FIRST:  
-        	new AlertDialog.Builder(MainActivity.this).setTitle("Information").setMessage("Sourcecode:\nhttps://github.com/ukari/calculator\nEmail:\nchendianbuji@gmail.com\nDate:\n2015-05-20 7:12").show(); 
+        	new AlertDialog.Builder(MainActivity.this).setTitle("Information").setMessage("Sourcecode:\nhttps://github.com/ukari/calculator\nEmail:\nchendianbuji@gmail.com\nDate:\n2015-05-21 23:29").show(); 
             break;  
         case Menu.FIRST + 1:  
         	android.os.Process.killProcess(android.os.Process.myPid());

@@ -206,11 +206,8 @@ public class Calculate {
 				result = numberA.divideAndRemainder(numberB)[1].toString();
 				break;
 			case '^':
-				if (Double.compare(numberA.doubleValue(),3) == 0&&Double.compare(numberB.doubleValue(),3) == 0) {//a patch for android's dalvik
-					result = String.valueOf(3.0*3.0*3.0);
-				}else{
-					result = String.valueOf(Math.pow(numberA.doubleValue(), numberB.doubleValue()));
-				}
+				result = String.valueOf(Math.pow(numberA.doubleValue(), numberB.doubleValue()));
+				result = new BigDecimal(result).divide(new BigDecimal("1"),8,BigDecimal.ROUND_HALF_UP).toString();//a patch for android's dalvik
 				break;
 			default:
 				break;
