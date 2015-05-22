@@ -10,7 +10,7 @@
 
 ## Run Environment
 
-* Android <a>4.*.*</a>
+* Android 4.\*.\*
     
 ## Operator List:
 
